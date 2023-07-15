@@ -4,9 +4,9 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import Profile from "@components/Profile";
+import Dashboard from "@components/Dashboard";
 
-const MyProfile = () => {
+const MyDashboard = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -48,9 +48,9 @@ const MyProfile = () => {
   };
 
   return (
-    <Profile
+    <Dashboard
       name="My"
-      desc="Welcome to your personalized profile page."
+      desc="Welcome to your personalized dashboard page. "
       data={myPosts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
@@ -58,4 +58,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default MyDashboard;

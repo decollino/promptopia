@@ -4,23 +4,32 @@ import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 
 export const metadata = {
-  title: "Promptopia",
-  description: "Discover & Share AI Prompts",
+  title: "NutroChart",
+  description: "Empowering Nutrologists for Enhanced Patient Care",
 };
 
 const RootLayout = ({ children }) => (
-  <html lang='en'>
+  <html lang="en">
     <body>
-      <Provider>
-        <div className='main'>
-          <div className='gradient' />
-        </div>
+      <div className="flex flex-col min-h-screen">
+        <Provider>
+          <div className="main">
+            <div className="gradient" />
+          </div>
 
-        <main className='app'>
-          <Nav />
-          {children}
-        </main>
-      </Provider>
+          <main className="app">
+            <Nav />
+            {children}
+          </main>
+
+          <footer className="footer mt-auto">
+            {/* Add your footer content here */}
+            <p>
+              &copy; {new Date().getFullYear()} NutroChart. All rights reserved.
+            </p>
+          </footer>
+        </Provider>
+      </div>
     </body>
   </html>
 );

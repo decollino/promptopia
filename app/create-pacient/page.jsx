@@ -6,19 +6,19 @@ import { useRouter } from "next/navigation";
 
 import Form from "@components/Form";
 
-const CreatePrompt = () => {
+const CreatePacient = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
   const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
 
-  const createPrompt = async (e) => {
+  const createPacient = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/prompt/new", {
+      const response = await fetch("/api/pacient/new", {
         method: "POST",
         body: JSON.stringify({
           prompt: post.prompt,
@@ -28,7 +28,7 @@ const CreatePrompt = () => {
       });
 
       if (response.ok) {
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
@@ -39,13 +39,13 @@ const CreatePrompt = () => {
 
   return (
     <Form
-      type='Create'
+      type="Create"
       post={post}
       setPost={setPost}
       submitting={submitting}
-      handleSubmit={createPrompt}
+      handleSubmit={createPacient}
     />
   );
 };
 
-export default CreatePrompt;
+export default CreatePacient;

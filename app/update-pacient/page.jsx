@@ -5,17 +5,17 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
-const UpdatePrompt = () => {
+const UpdatePacient = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const promptId = searchParams.get("id");
+  const pacientId = searchParams.get("id");
 
-  const [post, setPost] = useState({ prompt: "", tag: "", });
+  const [post, setPost] = useState({ prompt: "", tag: "" });
   const [submitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    const getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`);
+    const getPacientDetails = async () => {
+      const response = await fetch(`/api/pacient/${pacientId}`);
       const data = await response.json();
 
       setPost({
@@ -24,17 +24,17 @@ const UpdatePrompt = () => {
       });
     };
 
-    if (promptId) getPromptDetails();
-  }, [promptId]);
+    if (pacientId) getPacientDetails();
+  }, [pacientId]);
 
-  const updatePrompt = async (e) => {
+  const updatePacient = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    if (!promptId) return alert("Missing PromptId!");
+    if (!pacientId) return alert("Missing PacientId!");
 
     try {
-      const response = await fetch(`/api/prompt/${promptId}`, {
+      const response = await fetch(`/api/pacient/${pacientId}`, {
         method: "PATCH",
         body: JSON.stringify({
           prompt: post.prompt,
@@ -43,7 +43,7 @@ const UpdatePrompt = () => {
       });
 
       if (response.ok) {
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
@@ -54,13 +54,13 @@ const UpdatePrompt = () => {
 
   return (
     <Form
-      type='Edit'
+      type="Edit"
       post={post}
       setPost={setPost}
       submitting={submitting}
-      handleSubmit={updatePrompt}
+      handleSubmit={updatePacient}
     />
   );
 };
 
-export default UpdatePrompt;
+export default UpdatePacient;
