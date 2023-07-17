@@ -92,14 +92,7 @@ const Nav = () => {
             {toggleDropdown && (
               <div className="dropdown">
                 <Link
-                  href="/profile"
-                  className="dropdown_link"
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  My Profile
-                </Link>
-                <Link
-                  href="/create-dashboard"
+                  href="/dashboard"
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
@@ -110,7 +103,7 @@ const Nav = () => {
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  Create Prompt
+                  Add Pacient
                 </Link>
                 <button
                   type="button"
