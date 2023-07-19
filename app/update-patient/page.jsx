@@ -5,40 +5,49 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
-const UpdatePacient = () => {
+const UpdatePatient = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pacientId = searchParams.get("id");
+  const patientId = searchParams.get("id");
 
-  const [post, setPost] = useState({ prompt: "", tag: "" });
+  const [post, setPost] = useState({
+    name: "",
+    tag: "",
+    birthDate: "",
+    email: "",
+  });
   const [submitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    const getPacientDetails = async () => {
-      const response = await fetch(`/api/pacient/${pacientId}`);
+    const getPatientDetails = async () => {
+      const response = await fetch(`/api/patient/${patientId}`);
       const data = await response.json();
 
       setPost({
-        prompt: data.prompt,
+        name: data.name,
         tag: data.tag,
+        birthDate: data.birthDate,
+        email: data.email,
       });
     };
 
-    if (pacientId) getPacientDetails();
-  }, [pacientId]);
+    if (patientId) getPatientDetails();
+  }, [patientId]);
 
-  const updatePacient = async (e) => {
+  const updatePatient = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    if (!pacientId) return alert("Missing PacientId!");
+    if (!patientId) return alert("Missing PatientId!");
 
     try {
-      const response = await fetch(`/api/pacient/${pacientId}`, {
+      const response = await fetch(`/api/patient/${patientId}`, {
         method: "PATCH",
         body: JSON.stringify({
-          prompt: post.prompt,
+          name: post.name,
           tag: post.tag,
+          birthDate: post.birthDate,
+          email: post.email,
         }),
       });
 
@@ -58,9 +67,9 @@ const UpdatePacient = () => {
       post={post}
       setPost={setPost}
       submitting={submitting}
-      handleSubmit={updatePacient}
+      handleSubmit={updatePatient}
     />
   );
 };
 
-export default UpdatePacient;
+export default UpdatePatient;

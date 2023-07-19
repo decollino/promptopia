@@ -1,10 +1,12 @@
 import { useState } from "react";
 import PromptCard from "./PromptCard";
 
-const Dashborad = ({ name, desc, data, handleEdit, handleDelete }) => {
+const Dashboard = ({ name, desc, data, handleEdit, handleDelete }) => {
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
+
+  console.log("data dashboard compon: ", data);
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
@@ -12,7 +14,9 @@ const Dashborad = ({ name, desc, data, handleEdit, handleDelete }) => {
       (item) =>
         regex.test(item.creator.username) ||
         regex.test(item.tag) ||
-        regex.test(item.prompt)
+        regex.test(item.name) ||
+        regex.test(item.birthDate) ||
+        regex.test(item.email)
     );
   };
 
@@ -33,7 +37,7 @@ const Dashborad = ({ name, desc, data, handleEdit, handleDelete }) => {
     //    <section className="feed">
     <section className="w-full flex-center flex-col">
       <h1 className="head_text ">
-        <span className="blue_gradient">{name} Dashborad</span>
+        <span className="blue_gradient">{name} Dashboard</span>
       </h1>
       <p className="desc text-left">{desc}</p>
 
@@ -41,7 +45,7 @@ const Dashborad = ({ name, desc, data, handleEdit, handleDelete }) => {
       <form className="relative w-full flex-center desc">
         <input
           type="text"
-          placeholder="Search for a pacient or a hospital"
+          placeholder="Search for a patient or a hospital"
           value={searchText}
           onChange={handleSearchChange}
           required
@@ -72,4 +76,4 @@ const Dashborad = ({ name, desc, data, handleEdit, handleDelete }) => {
   );
 };
 
-export default Dashborad;
+export default Dashboard;

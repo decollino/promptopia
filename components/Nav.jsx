@@ -39,8 +39,8 @@ const Nav = () => {
               Dashboard
             </Link>
 
-            <Link href="/create-pacient" className="black_btn">
-              Add Pacient
+            <Link href="/create-patient" className="black_btn">
+              Add Patient
             </Link>
 
             <button type="button" onClick={signOut} className="outline_btn">
@@ -99,11 +99,11 @@ const Nav = () => {
                   Dashboard
                 </Link>
                 <Link
-                  href="/create-pacient"
+                  href="/create-patient"
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  Add Pacient
+                  Add Patient
                 </Link>
                 <button
                   type="button"

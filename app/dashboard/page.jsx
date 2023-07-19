@@ -17,6 +17,7 @@ const MyDashboard = () => {
       const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();
 
+      console.log("data dashboard: ", data);
       setMyPosts(data);
     };
 
@@ -24,17 +25,17 @@ const MyDashboard = () => {
   }, [session?.user.id]);
 
   const handleEdit = (post) => {
-    router.push(`/update-pacient?id=${post._id}`);
+    router.push(`/update-patient?id=${post._id}`);
   };
 
   const handleDelete = async (post) => {
     const hasConfirmed = confirm(
-      "Are you sure you want to delete this pacient?"
+      "Are you sure you want to delete this patient?"
     );
 
     if (hasConfirmed) {
       try {
-        await fetch(`/api/pacient/${post._id.toString()}`, {
+        await fetch(`/api/patient/${post._id.toString()}`, {
           method: "DELETE",
         });
 

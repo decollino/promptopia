@@ -1,12 +1,20 @@
 import Link from "next/link";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+const Form = ({
+  type,
+  post,
+  setPost,
+  submitting,
+  handleSubmit,
+  handlePhotoChange,
+}) => {
+  //console.log("post Form: ", post);
   return (
     <section className="w-full max-w-full flex-start flex-col">
       <h1 className="head_text text-left">
-        <span className="blue_gradient">{type} Pacient</span>
+        <span className="blue_gradient">{type} Patient</span>
       </h1>
-      <p className="desc text-left max-w-md">{type} a new Pacient.</p>
+      <p className="desc text-left max-w-md">{type} a new Patient.</p>
 
       <form
         onSubmit={handleSubmit}
@@ -14,15 +22,41 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       >
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
-            Your Pacient name:
+            Your Patient name:
           </span>
 
           <input
-            value={post.prompt}
-            onChange={(e) => setPost({ ...post, prompt: e.target.value })}
-            placeholder="Write your pacient name here"
+            value={post.name}
+            onChange={(e) => setPost({ ...post, name: e.target.value })}
+            placeholder="Write your patient name here"
             required
             className="form_input "
+          />
+        </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            Birth Date:
+          </span>
+          <input
+            value={post.birthDate}
+            onChange={(e) => setPost({ ...post, birthDate: e.target.value })}
+            type="date"
+            required
+            className="form_input"
+          />
+        </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            email:
+          </span>
+          <input
+            value={post.email}
+            onChange={(e) => setPost({ ...post, email: e.target.value })}
+            placeholder="Write the patient email"
+            required
+            className="form_input"
           />
         </label>
 
@@ -42,6 +76,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             className="form_input"
           />
         </label>
+
+        {/*        <input type="file" name="photo" onChange={handlePhotoChange} />*/}
 
         <div className="flex-end mx-3 mb-5 gap-4">
           <Link href="/" className="text-gray-500 text-sm">

@@ -1,17 +1,17 @@
-import Prompt from "@models/pacient";
+import Patient from "@models/patient";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (request, { params }) => {
   try {
     await connectToDB();
 
-    const pacients = await Prompt.find({ creator: params.id }).populate(
+    const patients = await Patient.find({ creator: params.id }).populate(
       "creator"
     );
 
-    return new Response(JSON.stringify(pacients), { status: 200 });
+    return new Response(JSON.stringify(patients), { status: 200 });
   } catch (error) {
-    return new Response("Failed to fetch pacients created by user", {
+    return new Response("Failed to fetch patients created by user", {
       status: 500,
     });
   }

@@ -27,7 +27,7 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/pacient");
+    const response = await fetch("/api/patient");
     const data = await response.json();
 
     setAllPosts(data);
@@ -43,7 +43,8 @@ const Feed = () => {
       (item) =>
         regex.test(item.creator.username) ||
         regex.test(item.tag) ||
-        regex.test(item.prompt)
+        regex.test(item.name) ||
+        regex.test(item.email)
     );
   };
 
