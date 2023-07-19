@@ -1,16 +1,5 @@
 import Patient from "@models/patient";
 import { connectToDB } from "@utils/database";
-import multer from "multer";
-
-// Create a multer instance for file upload
-const upload = multer({ dest: "uploads/" });
-
-// Use the multer middleware for the file upload route
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
 
 /*
 export const POST = async (request, response) => {
